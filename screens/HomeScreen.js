@@ -2,14 +2,31 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-import SearchBar from '../components/InputBar';
+import InputBar from '../components/InputBar';
+import Title from '../components/Title';
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
-      <SearchBar style={styles.input} label={'username:'} width={'75%'} />
-      <SearchBar style={styles.input} label={'password:'} width={'75%'} />
+      <Title
+        style={styles.title}
+        text={'Walletifai Login'}
+        textColor={'#b3ffff'}
+      />
+      <InputBar
+        style={styles.input}
+        label={'Username:'}
+        width={'75%'}
+        placeholderText={'enter your username'}
+      />
+      <InputBar
+        style={styles.input}
+        label={'Password:'}
+        width={'75%'}
+        placeholderText={'enter your password'}
+        hideCharacters={true}
+      />
     </View>
   );
 }
@@ -17,11 +34,15 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#009900',
+    backgroundColor: '#b3ffb3',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    paddingTop: -50,
+    paddingBottom: 25,
+  },
   input: {
-    backgroundColor: '#009999',
+    backgroundColor: '#d9ffb3',
   },
 });

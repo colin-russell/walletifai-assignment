@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  KeyboardAvoidingView,
+} from 'react-native';
 import PropTypes from 'prop-types';
 
 const InputBar = (props) => {
@@ -11,15 +17,18 @@ const InputBar = (props) => {
   };
 
   return (
-    <View style={{ ...styles.container, ...props.style, width: props.width }}>
+    <KeyboardAvoidingView
+      style={{ ...styles.container, ...props.style, width: props.width }}
+    >
       <Text style={styles.text}>{props.label}</Text>
       <TextInput
         style={styles.input}
+        secureTextEntry={props.hideCharacters}
         value={text}
-        placeholder='Search for...'
+        placeholder={props.placeholderText}
         onChangeText={(newText) => handleTextChange(newText)}
       />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -50,6 +59,8 @@ const styles = StyleSheet.create({
 
 InputBar.propTypes = {
   label: PropTypes.string,
+  hideCharacters: PropTypes.bool,
+  placeholderText: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   style: PropTypes.object,
 };
