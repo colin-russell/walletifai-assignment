@@ -9,6 +9,10 @@ import Button from '../components/Button';
 const screenWidth = Dimensions.get('window').width;
 
 export default function HomeScreen() {
+  const handleLogInPress = () => {
+    console.log('log in press');
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
@@ -34,7 +38,7 @@ export default function HomeScreen() {
         labelText={'Log In'}
         backgroundColor={'#b3ffff'}
         fontColor={'#006666'}
-        onPress={() => console.log('Log In press')}
+        onPress={handleLogInPress}
       />
     </View>
   );
