@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import InputBar from '../components/InputBar';
 import Title from '../components/Title';
+import Button from '../components/Button';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -28,6 +29,12 @@ export default function HomeScreen() {
         width={screenWidth * 0.75}
         placeholderText={'enter your password'}
         hideCharacters={true}
+      />
+      <Button
+        labelText={'Log In'}
+        backgroundColor={'#b3ffff'}
+        fontColor={'#006666'}
+        onPress={() => console.log('Log In press')}
       />
     </View>
   );
