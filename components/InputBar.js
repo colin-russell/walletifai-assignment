@@ -17,17 +17,17 @@ const InputBar = (props) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ ...styles.container, ...props.style, width: props.width }}
-    >
-      <Text style={styles.text}>{props.label}</Text>
-      <TextInput
-        style={styles.input}
-        secureTextEntry={props.hideCharacters}
-        value={text}
-        placeholder={props.placeholderText}
-        onChangeText={(newText) => handleTextChange(newText)}
-      />
+    <KeyboardAvoidingView behavior={'padding'}>
+      <View style={{ ...styles.container, ...props.style, width: props.width }}>
+        <Text style={styles.text}>{props.label}</Text>
+        <TextInput
+          style={styles.input}
+          secureTextEntry={props.hideCharacters}
+          value={text}
+          placeholder={props.placeholderText}
+          onChangeText={(newText) => handleTextChange(newText)}
+        />
+      </View>
     </KeyboardAvoidingView>
   );
 };

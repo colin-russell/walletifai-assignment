@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 import InputBar from '../components/InputBar';
 import Title from '../components/Title';
+
+const screenWidth = Dimensions.get('window').width;
 
 export default function HomeScreen() {
   return (
@@ -17,13 +19,13 @@ export default function HomeScreen() {
       <InputBar
         style={styles.input}
         label={'Username:'}
-        width={'75%'}
+        width={screenWidth * 0.75}
         placeholderText={'enter your username'}
       />
       <InputBar
         style={styles.input}
         label={'Password:'}
-        width={'75%'}
+        width={screenWidth * 0.75}
         placeholderText={'enter your password'}
         hideCharacters={true}
       />
