@@ -1,17 +1,33 @@
-import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { Dimensions, Alert } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components';
 
 import InputBar from '../components/InputBar';
 import Title from '../components/Title';
 import Button from '../components/Button';
+import mockLogin from '../modules/api/mockLogin';
 
 const screenWidth = Dimensions.get('window').width;
 
 export default function HomeScreen() {
-  const handleLogInPress = () => {
-    console.log('log in press');
+  var username = '';
+  var password = '';
+
+  const handleLogInPress = async () => {
+    mockLogin({ username: username, password: password }).then((response) => {
+      if (response[1] == true) {
+        // successfully logged in
+        Alert.alert('Success', response[0], [{ text: 'OK' }], {
+          cancelable: false,
+        });
+      } else {
+        // unsuccessful
+        Alert.alert('Trouble Logging In', response[0], [{ text: 'OK' }], {
+          cancelable: false,
+        });
+      }
+    });
   };
 
   return (
@@ -22,12 +38,14 @@ export default function HomeScreen() {
         label={'Username:'}
         width={screenWidth * 0.75}
         placeholderText={'enter your username'}
+        onChangeText={(text) => (username = text)}
       />
       <Input
         label={'Password:'}
         width={screenWidth * 0.75}
         placeholderText={'enter your password'}
         hideCharacters={true}
+        onChangeText={(text) => (password = text)}
       />
       <Button
         labelText={'Log In'}

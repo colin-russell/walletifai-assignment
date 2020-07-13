@@ -8,6 +8,7 @@ const InputBar = (props) => {
 
   const handleTextChange = (newText) => {
     setText(newText);
+    props.onChangeText(newText);
   };
 
   return (
@@ -55,6 +56,7 @@ InputBar.propTypes = {
   placeholderText: PropTypes.string,
   width: PropTypes.number,
   style: PropTypes.array,
+  onChangeText: PropTypes.func,
 };
 
 export default InputBar;
