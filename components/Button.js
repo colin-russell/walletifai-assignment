@@ -1,39 +1,39 @@
 import React from 'react';
-import { TouchableHighlight, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const Button = (props) => {
-  const styles = StyleSheet.create({
-    button: {
-      borderRadius: 20,
-      borderColor: 'black',
-      borderWidth: 2,
-      padding: 10,
-      paddingHorizontal: 15,
-      backgroundColor: props.backgroundColor,
-      margin: 10,
-    },
-    text: {
-      fontSize: 16,
-      color: props.fontColor,
-    },
-  });
-
-  Button.propTypes = {
-    labelText: PropTypes.string,
-    style: PropTypes.object,
-    backgroundColor: PropTypes.string,
-    fontColor: PropTypes.string,
-    onPress: PropTypes.func,
-  };
   return (
-    <TouchableHighlight
-      style={{ ...styles.button, ...props.style }}
+    <StyledButton
+      style={props.style}
       onPress={props.onPress}
+      backgroundColor={props.backgroundColor}
     >
-      <Text style={styles.text}>{props.labelText}</Text>
-    </TouchableHighlight>
+      <StyledText fontColor={props.fontColor}>{props.labelText}</StyledText>
+    </StyledButton>
   );
+};
+
+const StyledButton = styled.TouchableHighlight`
+  border-radius: 20px;
+  border-color: black;
+  border-width: 2px;
+  padding: 10px;
+  padding-horizontal: 15px;
+  margin: 10px;
+  background-color: ${(props) => props.backgroundColor};
+`;
+const StyledText = styled.Text`
+  font-size: 16px;
+  color: ${(props) => props.fontColor};
+`;
+
+Button.propTypes = {
+  labelText: PropTypes.string,
+  style: PropTypes.object,
+  backgroundColor: PropTypes.string,
+  fontColor: PropTypes.string,
+  onPress: PropTypes.func,
 };
 
 export default Button;
