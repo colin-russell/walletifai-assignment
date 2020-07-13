@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import styled from 'styled-components';
 
 import InputBar from '../components/InputBar';
 import Title from '../components/Title';
@@ -14,13 +15,9 @@ export default function HomeScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <Container>
       <StatusBar style='auto' />
-      <Title
-        style={styles.title}
-        text={'Walletifai Login'}
-        textColor={'#b3ffff'}
-      />
+      <TitleStyled text={'Walletifai Login'} textColor={'#b3ffff'} />
       <InputBar
         style={styles.input}
         label={'Username:'}
@@ -40,17 +37,22 @@ export default function HomeScreen() {
         fontColor={'#006666'}
         onPress={handleLogInPress}
       />
-    </View>
+    </Container>
   );
 }
 
+const Container = styled.View`
+  flex: 1;
+  background-color: #b3ffb3;
+  align-items: center;
+  justify-content: center;
+`;
+const TitleStyled = styled(Title)`
+  padding-top: -50px;
+  margin-bottom: 25px;
+`;
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#b3ffb3',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   title: {
     paddingTop: -50,
     paddingBottom: 25,

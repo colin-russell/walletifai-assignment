@@ -1,32 +1,27 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const Title = (props) => {
   return (
     <View style={props.style}>
-      <Text style={{ ...styles.text, color: props.textColor }}>
-        {props.text}
-      </Text>
+      <StyledText color={props.textColor}>{props.text}</StyledText>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 40,
-    textShadowColor: 'black',
-    textShadowRadius: 5,
-    textShadowOffset: {
-      width: 1,
-      height: 2,
-    },
-  },
-});
+const StyledText = styled.Text`
+  font-size: 40px;
+  text-shadow-color: black;
+  text-shadow-radius: 5px;
+  text-shadow-offset: 1px 2px;
+  color: ${(props) => props.color};
+`;
 
 Title.propTypes = {
   text: PropTypes.string,
-  style: PropTypes.object,
+  style: PropTypes.array,
   textColor: PropTypes.string,
 };
 
