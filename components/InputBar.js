@@ -1,67 +1,59 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  KeyboardAvoidingView,
-} from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const InputBar = (props) => {
   const [text, setText] = useState('');
 
   const handleTextChange = (newText) => {
     setText(newText);
-    console.log(text);
   };
 
   return (
     <KeyboardAvoidingView behavior={'padding'}>
-      <View style={{ ...styles.container, ...props.style, width: props.width }}>
-        <Text style={styles.text}>{props.label}</Text>
-        <TextInput
-          style={styles.input}
+      <Container style={props.style} width={props.width}>
+        <Label>{props.label}</Label>
+        <Input
           secureTextEntry={props.hideCharacters}
           value={text}
           placeholder={props.placeholderText}
           onChangeText={(newText) => handleTextChange(newText)}
         />
-      </View>
+      </Container>
     </KeyboardAvoidingView>
   );
 };
 
-const styles = StyleSheet.create({
-  text: {
-    margin: 5,
-  },
-  input: {
-    width: '100%',
-    borderWidth: 1,
-    borderColor: 'grey',
-    borderRadius: 20,
-    height: 40,
-    padding: 10,
-    marginBottom: 10,
-    marginTop: 10,
-    backgroundColor: 'white',
-  },
-  container: {
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: 20,
-    borderWidth: 5,
-    padding: 5,
-    margin: 5,
-  },
-});
+const Container = styled.View`
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  border-width: 5px;
+  padding: 5px;
+  margin: 5px;
+  width: ${(props) => props.width}px;
+`;
+const Label = styled.Text`
+  margin: 5px;
+`;
+const Input = styled.TextInput`
+  width: 100%;
+  border-width: 1px;
+  border-color: grey;
+  border-radius: 20px;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: white;
+`;
 
 InputBar.propTypes = {
   label: PropTypes.string,
   hideCharacters: PropTypes.bool,
   placeholderText: PropTypes.string,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width: PropTypes.number,
   style: PropTypes.object,
 };
 
