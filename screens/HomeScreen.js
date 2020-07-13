@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Dimensions, Alert } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components';
 
@@ -11,23 +12,28 @@ import mockLogin from '../modules/api/mockLogin';
 const screenWidth = Dimensions.get('window').width;
 
 export default function HomeScreen() {
-  var username = '';
-  var password = '';
+  var [usernameInput, setUsernameInput] = useState('');
+  var [passwordInput, setPasswordInput] = useState('');
+  const dispatch = useDispatch();
 
   const handleLogInPress = async () => {
-    mockLogin({ username: username, password: password }).then((response) => {
-      if (response[1] == true) {
-        // successfully logged in
-        Alert.alert('Success', response[0], [{ text: 'OK' }], {
-          cancelable: false,
-        });
-      } else {
-        // unsuccessful
-        Alert.alert('Trouble Logging In', response[0], [{ text: 'OK' }], {
-          cancelable: false,
-        });
+    mockLogin({ username: usernameInput, password: passwordInput }).then(
+      (response) => {
+        if (response[1] == true) {
+          // successfully logged in
+          Alert.alert('Success', response[0], [{ text: 'OK' }], {
+            cancelable: false,
+          });
+          dispatch({ type: 'LOG_IN', username: usernameInput });
+        } else {
+          // unsuccessful
+          Alert.alert('Trouble Logging In', response[0], [{ text: 'OK' }], {
+            cancelable: false,
+          });
+          dispatch({ type: 'LOG_OUT' });
+        }
       }
-    });
+    );
   };
 
   return (
@@ -38,14 +44,14 @@ export default function HomeScreen() {
         label={'Username:'}
         width={screenWidth * 0.75}
         placeholderText={'enter your username'}
-        onChangeText={(text) => (username = text)}
+        onChangeText={(text) => setUsernameInput(text)}
       />
       <Input
         label={'Password:'}
         width={screenWidth * 0.75}
         placeholderText={'enter your password'}
         hideCharacters={true}
-        onChangeText={(text) => (password = text)}
+        onChangeText={(text) => setPasswordInput(text)}
       />
       <Button
         labelText={'Log In'}

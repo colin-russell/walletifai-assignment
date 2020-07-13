@@ -7,8 +7,8 @@ const timeout = (ms) => new Promise((res) => setTimeout(res, ms));
 const mockLogin = async (props) => {
   await timeout(300);
 
-  console.log('username', props.username);
-  console.log('pass', props.password);
+  // console.log('username', props.username);
+  // console.log('pass', props.password);
 
   if (props.username == '' || props.password == '') {
     return ['Please enter a valid username and password', false];
