@@ -54,7 +54,7 @@ InputBar.propTypes = {
   hideCharacters: PropTypes.bool,
   placeholderText: PropTypes.string,
   width: PropTypes.number,
-  style: PropTypes.object,
+  style: PropTypes.array,
 };
 
 export default InputBar;

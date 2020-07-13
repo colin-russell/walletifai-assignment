@@ -18,14 +18,12 @@ export default function HomeScreen() {
     <Container>
       <StatusBar style='auto' />
       <TitleStyled text={'Walletifai Login'} textColor={'#b3ffff'} />
-      <InputBar
-        style={styles.input}
+      <Input
         label={'Username:'}
         width={screenWidth * 0.75}
         placeholderText={'enter your username'}
       />
-      <InputBar
-        style={styles.input}
+      <Input
         label={'Password:'}
         width={screenWidth * 0.75}
         placeholderText={'enter your password'}
@@ -51,13 +49,6 @@ const TitleStyled = styled(Title)`
   padding-top: -50px;
   margin-bottom: 25px;
 `;
-
-const styles = StyleSheet.create({
-  title: {
-    paddingTop: -50,
-    paddingBottom: 25,
-  },
-  input: {
-    backgroundColor: '#d9ffb3',
-  },
-});
+const Input = styled(InputBar)`
+  background-color: #d9ffb3;
+`;
