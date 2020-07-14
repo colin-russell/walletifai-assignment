@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dimensions, Alert } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components';
 
@@ -30,7 +30,6 @@ export default function HomeScreen() {
           Alert.alert('Trouble Logging In', response[0], [{ text: 'OK' }], {
             cancelable: false,
           });
-          dispatch({ type: 'LOG_OUT' });
         }
       }
     );
