@@ -1,11 +1,14 @@
 import React from 'react';
+import { Alert } from 'react-native';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Title from '../components/Title';
+import Button from '../components/Button';
 
-export default function UserScreen() {
+export default function UserScreen(props) {
   const { username } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const handleLogOutPress = async () => {
     // log user out & update redux store
@@ -13,15 +16,16 @@ export default function UserScreen() {
       cancelable: false,
     });
     dispatch({ type: 'LOG_OUT' });
+    props.navigation.goBack();
   };
 
   return (
     <Container>
-      <TitleStyled text={`Hello, ${username}!`} textColor={'grey'} />
+      <TitleStyled text={`Hello, ${username}!`} textColor={'white'} />
       <Button
         labelText={'Log Out'}
-        backgroundColor={'#b3ffff'}
-        fontColor={'#006666'}
+        backgroundColor={'grey'}
+        fontColor={'white'}
         onPress={handleLogOutPress}
       />
     </Container>
